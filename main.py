@@ -1,3 +1,5 @@
+from bidict import bidict
+
 All_transformers = bidict({'bert-base-uncased':'BERT', 'distilbert-base-uncased':'DistilBERT', 'roberta-base':'RoBERTa',
                     'distilroberta-base':'DistilRoBERTa', 'google/electra-base-discriminator':'ELECTRA',
                     'xlm-roberta-base':'XLM-R', 'xlnet-base-cased':'XLNet', 'allenai/longformer-base-4096':'Longformer'})

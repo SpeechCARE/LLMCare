@@ -24,9 +24,6 @@ def get_config():
 
     configs['data_type'] = data_type
 
-    MANUAL_LING = 'Manual'
-    LIWC = 'LIWC'
-
     configs['ling_input_size'] = 32
     if configs['fusion_type'] == None:
         configs['liwc_input_size'] = 0
@@ -36,5 +33,7 @@ def get_config():
         configs['liwc_input_size'] = 90 if not configs['jmim'] else 57
     elif data_type == TWICE_AUGMENTATION:
         configs['liwc_input_size'] = 91 if not configs['jmim'] else 21
+
+    return configs
 
     

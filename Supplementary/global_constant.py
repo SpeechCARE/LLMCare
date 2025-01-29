@@ -1,0 +1,2 @@
+MANUAL_LING = 'Manual'
+LIWC = 'LIWC'

@@ -1,3 +1,5 @@
+from utils import *
+
 class Alzheimer_text_classification():
 
     def __init__(self, configs, train_data=None, valid_data=None, test_data=None, phase='training'):
@@ -198,7 +200,7 @@ class Alzheimer_text_classification():
                   '\n------------->VAl -> Loss =',valid_loss,'f1-score =',valid_f1,'\n')
 
         print(f'Max F1 on test: {np.max(np.array(f1_list)[:, 1])} - epoch: {self.best_epoch_f1}')
-        self.plot_training(np.array(loss_list), np.array(f1_list), ' ')
+        plot_training(np.array(loss_list), np.array(f1_list), ' ')
 
     def testing(self, path_model, loader_type):
         model = self.creating_model(inference=True)
@@ -209,5 +211,5 @@ class Alzheimer_text_classification():
             _, pred_probs, pred_labels, true_labels = self.evaluate(model, nn.CrossEntropyLoss(), self.test_dataloader)
         if loader_type == 'valid':
             _, pred_probs, pred_labels, true_labels = self.evaluate(model, nn.CrossEntropyLoss(), self.valid_dataloader)
-        prec, recall, f1, auc_, acc = self.get_classification_reports(pred_probs, pred_labels, true_labels)
+        prec, recall, f1, auc_, acc = get_classification_reports(pred_probs, pred_labels, true_labels)
         return prec, recall, f1, auc_, acc, pred_probs, pred_labels, true_labels

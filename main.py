@@ -1,6 +1,8 @@
 from bidict import bidict
 import itertools
 
+from config import *
+
 All_transformers = bidict({'bert-base-uncased':'BERT', 'distilbert-base-uncased':'DistilBERT', 'roberta-base':'RoBERTa',
                     'distilroberta-base':'DistilRoBERTa', 'google/electra-base-discriminator':'ELECTRA',
                     'xlm-roberta-base':'XLM-R', 'xlnet-base-cased':'XLNet', 'allenai/longformer-base-4096':'Longformer'})
@@ -29,6 +31,8 @@ def __main__():
     except FileNotFoundError:
         df_results = pd.DataFrame()
         remaining_episodes = episodes.copy()
+
+    configs = get_config()
 
     for row, episode in enumerate(remaining_episodes):
 

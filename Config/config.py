@@ -1,7 +1,3 @@
-TRANSCRIPTED = ''
-ONCE_AUGMENTATION = '_once_augmentation'
-TWICE_AUGMENTATION = '_twice_augmentation'
-
 def get_config():
     result_sheet = 'Yasaman_New_Late3_Fusion_JMIM_256_1024_128_Transformers.xlsx'
     data_type = TRANSCRIPTED

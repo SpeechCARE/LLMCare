@@ -22,7 +22,7 @@ def get_classification_reports(pred_probs, pred_labels, true_labels):
 
 
 def plot_training(loss_list, metric_list, title):
-    %matplotlib inline
+    # %matplotlib inline
     # clear_output(wait=True)
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 5) )
     fig.subplots_adjust(wspace=.2)

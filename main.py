@@ -1,4 +1,5 @@
 from bidict import bidict
+import itertools
 
 All_transformers = bidict({'bert-base-uncased':'BERT', 'distilbert-base-uncased':'DistilBERT', 'roberta-base':'RoBERTa',
                     'distilroberta-base':'DistilRoBERTa', 'google/electra-base-discriminator':'ELECTRA',

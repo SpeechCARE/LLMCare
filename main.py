@@ -3,23 +3,35 @@ import itertools
 
 from config import *
 
-All_transformers = bidict({'bert-base-uncased':'BERT', 'distilbert-base-uncased':'DistilBERT', 'roberta-base':'RoBERTa',
-                    'distilroberta-base':'DistilRoBERTa', 'google/electra-base-discriminator':'ELECTRA',
-                    'xlm-roberta-base':'XLM-R', 'xlnet-base-cased':'XLNet', 'allenai/longformer-base-4096':'Longformer'})
+def get_remaining_episodes():
+    All_transformers = bidict({'bert-base-uncased':'BERT',
+                            'distilbert-base-uncased':'DistilBERT',
+                            'BAAI/bge-base-en-v1.5':'BGEBase1',
+                            'BAAI/bge-base-en':'BGEBaseEN',
+                            'emilyalsentzer/Bio_ClinicalBERT':'Bio_ClinicalBERT',
+                            'yikuan8/Clinical-BigBird': 'ClinicalBigBird',
+                            'Clinical-AI-Apollo/Medical-NER':'MedicalNER',
+                            'dominiqueblok/roberta-base-finetuned-ner':'RobertaNER',
+                            'Alibaba-NLP/gte-multilingual-base': 'GTE',
+                            'bionlp/bluebert_pubmed_uncased_L-12_H-768_A-12':'BlueBert'
+    })
 
-transformers_last_n_layers = {'bert-base-uncased':1, 'distilbert-base-uncased':1, 'roberta-base':1,
-                             'distilroberta-base':1, 'google/electra-base-discriminator':1, 'xlm-roberta-base':1,
-                              'xlnet-base-cased':1, 'allenai/longformer-base-4096':1}
+    transformers_last_n_layers = {'bert-base-uncased':1, 'distilbert-base-uncased':1, 'emilyalsentzer/Bio_ClinicalBERT':1,
+                                'BAAI/bge-base-en-v1.5':1, 'BAAI/bge-base-en':1, 'yikuan8/Clinical-BigBird':1,
+                                'Clinical-AI-Apollo/Medical-NER':1, 'dominiqueblok/roberta-base-finetuned-ner':1,
+                                'Alibaba-NLP/gte-multilingual-base':1,
+                                'bionlp/bluebert_pubmed_uncased_L-12_H-768_A-12':1,
+                                }
 
-transformers_list = ['distilbert-base-uncased'] #****
-seeds_list = [0, 3, 10, 33, 55]
-embedding_output_structure_list = ['CLS']
+    transformers_list = ['distilbert-base-uncased', 'bert-base-uncased', 'BAAI/bge-base-en-v1.5', 'BAAI/bge-base-en', 'emilyalsentzer/Bio_ClinicalBERT', 'yikuan8/Clinical-BigBird']
 
-all_list = [transformers_list, seeds_list, embedding_output_structure_list]
-episodes = list(itertools.product(*all_list))
+    seeds_list = [0, 3, 10, 33, 55]
 
+    embedding_output_structure_list = ['Mean', 'CLS']
 
-def __main__():
+    all_list = [transformers_list, seeds_list, embedding_output_structure_list]
+    episodes = list(itertools.product(*all_list))
+
     try:
         df_results = pd.read_excel(result_path + result_sheet)
 
@@ -32,6 +44,12 @@ def __main__():
         df_results = pd.DataFrame()
         remaining_episodes = episodes.copy()
 
+    return remaining_episodes
+
+def __main__():
+
+    remaining_episodes = get_remaining_episodes()
+    train_data, valid_data, test_data = load_dataset()
     configs = get_config()
 
     for row, episode in enumerate(remaining_episodes):

@@ -1,30 +1,5 @@
+from Config import *
 def load_dataset():
-    train_data_path = data_path + 'New_Data_Yasaman/'
-    validation_data_path = data_path + 'New_Data_Yasaman/'
-    test_data_path = data_path + 'Test_data_2021/'
-
-    train_text_path = 'New_Data_Yasaman/Text/train.csv'
-    val_text_path = 'New_Data_Yasaman/Text/validation.csv'
-    test_text_path = "Test_data_2021/Text/Test_DePiC.xlsx"
-
-
-    # Linguistic features
-    train_ling_path = train_data_path + f"Linguistic/Linguistic_DePiC{configs['data_type']}_train.xlsx"
-    valid_ling_path = train_data_path + f"Linguistic/Linguistic_DePiC{configs['data_type']}_validation.xlsx"
-    test_ling_path =  test_data_path + "Linguistic/Test_Linguistic_DePiC.xlsx"
-
-
-    # LIWC features
-    train_LIWC_path = train_data_path + f"LIWC/LIWC_DePiC{data_type}_train.xlsx"
-    valid_LIWC_path = train_data_path + f"LIWC/LIWC_DePiC{data_type}_validation.xlsx"
-    test_LIWC_path =  test_data_path + "LIWC/Test_LIWC_DePiC.xlsx"
-
-    # JMIM LIWC
-    train_jmim_LIWC_path = train_data_path + f"LIWC/JMIM_LIWC_DePiC{data_type}_train.xlsx"
-    valid_jmim_LIWC_path = train_data_path + f"LIWC/JMIM_LIWC_DePiC{data_type}_validation.xlsx"
-    test_jmim_LIWC_path = test_data_path + f"LIWC/Test_JMIM_LIWC_DePiC{data_type}.xlsx"
-
-
     sp = Supplementary()
 
     # Load train, validation, and test textual data
@@ -114,3 +89,5 @@ def load_dataset():
     temp = pd.merge(df_test_text, df_test_ling, on=['id', 'label'])
     temp = pd.merge(temp, df_LIWC_test, on=['id', 'label'])
     test_data = pd.merge(temp, df_jmim_LIWC_test, on=['id', 'label'])
+
+    return train_data, valid_data, test_data

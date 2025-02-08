@@ -1,28 +1,32 @@
 from bidict import bidict
 import itertools
+import pandas as pd
+import numpy as np 
+from utils import *
+from Config import *
+from data import *
+from train import *
 
-from config import *
+All_transformers = bidict({'bert-base-uncased':'BERT',
+                        'distilbert-base-uncased':'DistilBERT',
+                        'BAAI/bge-base-en-v1.5':'BGEBase1',
+                        'BAAI/bge-base-en':'BGEBaseEN',
+                        'emilyalsentzer/Bio_ClinicalBERT':'Bio_ClinicalBERT',
+                        'yikuan8/Clinical-BigBird': 'ClinicalBigBird',
+                        'Clinical-AI-Apollo/Medical-NER':'MedicalNER',
+                        'dominiqueblok/roberta-base-finetuned-ner':'RobertaNER',
+                        'Alibaba-NLP/gte-multilingual-base': 'GTE',
+                        'bionlp/bluebert_pubmed_uncased_L-12_H-768_A-12':'BlueBert'
+})
 
+transformers_last_n_layers = {'bert-base-uncased':1, 'distilbert-base-uncased':1, 'emilyalsentzer/Bio_ClinicalBERT':1,
+                            'BAAI/bge-base-en-v1.5':1, 'BAAI/bge-base-en':1, 'yikuan8/Clinical-BigBird':1,
+                            'Clinical-AI-Apollo/Medical-NER':1, 'dominiqueblok/roberta-base-finetuned-ner':1,
+                            'Alibaba-NLP/gte-multilingual-base':1,
+                            'bionlp/bluebert_pubmed_uncased_L-12_H-768_A-12':1,
+                            }
+                            
 def get_remaining_episodes():
-    All_transformers = bidict({'bert-base-uncased':'BERT',
-                            'distilbert-base-uncased':'DistilBERT',
-                            'BAAI/bge-base-en-v1.5':'BGEBase1',
-                            'BAAI/bge-base-en':'BGEBaseEN',
-                            'emilyalsentzer/Bio_ClinicalBERT':'Bio_ClinicalBERT',
-                            'yikuan8/Clinical-BigBird': 'ClinicalBigBird',
-                            'Clinical-AI-Apollo/Medical-NER':'MedicalNER',
-                            'dominiqueblok/roberta-base-finetuned-ner':'RobertaNER',
-                            'Alibaba-NLP/gte-multilingual-base': 'GTE',
-                            'bionlp/bluebert_pubmed_uncased_L-12_H-768_A-12':'BlueBert'
-    })
-
-    transformers_last_n_layers = {'bert-base-uncased':1, 'distilbert-base-uncased':1, 'emilyalsentzer/Bio_ClinicalBERT':1,
-                                'BAAI/bge-base-en-v1.5':1, 'BAAI/bge-base-en':1, 'yikuan8/Clinical-BigBird':1,
-                                'Clinical-AI-Apollo/Medical-NER':1, 'dominiqueblok/roberta-base-finetuned-ner':1,
-                                'Alibaba-NLP/gte-multilingual-base':1,
-                                'bionlp/bluebert_pubmed_uncased_L-12_H-768_A-12':1,
-                                }
-
     transformers_list = ['distilbert-base-uncased', 'bert-base-uncased', 'BAAI/bge-base-en-v1.5', 'BAAI/bge-base-en', 'emilyalsentzer/Bio_ClinicalBERT', 'yikuan8/Clinical-BigBird']
 
     seeds_list = [0, 3, 10, 33, 55]
@@ -46,7 +50,7 @@ def get_remaining_episodes():
 
     return remaining_episodes
 
-def __main__():
+def main():
 
     remaining_episodes = get_remaining_episodes()
     train_data, valid_data, test_data = load_dataset()
@@ -122,3 +126,6 @@ def __main__():
             df_results.to_excel(result_path + result_sheet, index=False)
 
             print('#' * 40)
+
+if __name__ == '__main__':
+    main()

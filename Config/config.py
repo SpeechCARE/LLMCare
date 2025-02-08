@@ -1,3 +1,7 @@
+TRANSCRIPTED = ''
+ONCE_AUGMENTATION = '_once_augmentation'
+TWICE_AUGMENTATION = '_twice_augmentation'
+
 def get_config():
     data_type = TRANSCRIPTED
 

@@ -1,9 +1,10 @@
+from Config import *
+
+configs = get_config()
+
 MANUAL_LING = 'Manual'
 LIWC = 'LIWC'
 
-TRANSCRIPTED = ''
-ONCE_AUGMENTATION = '_once_augmentation'
-TWICE_AUGMENTATION = '_twice_augmentation'
 
 
 path = '/content/drive/MyDrive/Transformers_LLMs_Linguistic_Paper/Development/'
@@ -32,12 +33,12 @@ test_ling_path =  test_data_path + "Linguistic/Test_Linguistic_DePiC.xlsx"
 
 
 # LIWC features
-train_LIWC_path = train_data_path + f"LIWC/LIWC_DePiC{data_type}_train.xlsx"
-valid_LIWC_path = train_data_path + f"LIWC/LIWC_DePiC{data_type}_validation.xlsx"
+train_LIWC_path = train_data_path + f"LIWC/LIWC_DePiC{configs['data_type']}_train.xlsx"
+valid_LIWC_path = train_data_path + f"LIWC/LIWC_DePiC{configs['data_type']}_validation.xlsx"
 test_LIWC_path =  test_data_path + "LIWC/Test_LIWC_DePiC.xlsx"
 
 # JMIM LIWC
-train_jmim_LIWC_path = train_data_path + f"LIWC/JMIM_LIWC_DePiC{data_type}_train.xlsx"
-valid_jmim_LIWC_path = train_data_path + f"LIWC/JMIM_LIWC_DePiC{data_type}_validation.xlsx"
-test_jmim_LIWC_path = test_data_path + f"LIWC/Test_JMIM_LIWC_DePiC{data_type}.xlsx"
+train_jmim_LIWC_path = train_data_path + f"LIWC/JMIM_LIWC_DePiC{configs['data_type']}_train.xlsx"
+valid_jmim_LIWC_path = train_data_path + f"LIWC/JMIM_LIWC_DePiC{configs['data_type']}_validation.xlsx"
+test_jmim_LIWC_path = test_data_path + f"LIWC/Test_JMIM_LIWC_DePiC{configs['data_type']}.xlsx"
 

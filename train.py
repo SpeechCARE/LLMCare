@@ -3,7 +3,8 @@ import pandas as pd
 import numpy as np 
 import torch
 import torch.nn
-from transformers import AutoModel, AutoTokenizer, AdamW
+from transformers import AutoModel, AutoTokenizer
+from torch.optim import AdamW
 import torch
 import torch.nn as nn
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler

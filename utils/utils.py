@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, auc, roc_curve
+import numpy as np
 
 def get_classification_reports(pred_probs, pred_labels, true_labels):
     # Compute AUC
@@ -26,8 +27,8 @@ def plot_training(loss_list, metric_list, title):
     # clear_output(wait=True)
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 5) )
     fig.subplots_adjust(wspace=.2)
-    self.plotLoss(ax1, np.array(loss_list), title)
-    self.plotMetric(ax2, np.array(metric_list), title)
+    plotLoss(ax1, np.array(loss_list), title)
+    plotMetric(ax2, np.array(metric_list), title)
     plt.show()
 
 

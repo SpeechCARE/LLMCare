@@ -1,0 +1,23 @@
+PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:32 accelerate launch \
+    --mixed_precision bf16 \
+    --num_processes 1 \
+    --num_machines 1 \
+    finetune.py \
+    --model_name_or_path "microsoft/Phi-4-multimodal-instruct" \
+    --train_csv_path "csv_files/train.csv" \
+    --train_audio_dir "dementiabank-denoise/train/" \
+    --eval_csv_path "csv_files/test.csv" \
+    --eval_audio_dir "dementiabank-denoise/test/All-test/" \
+    --output_dir "./phi4_ad_finetuned_csv" \
+    --num_train_epochs 3 \
+    --batch_size_per_gpu 1 \
+    --gradient_accumulation_steps 32 \
+    --learning_rate 2e-5 \
+    --logging_steps 10 \
+    --save_steps 200 \
+    --eval_steps 200 \
+    --max_audio_seconds 70 \
+    --use_flash_attention \
+    --mixed_precision bf16 \
+    --low_cpu_mem_usage \
+    --seed 42

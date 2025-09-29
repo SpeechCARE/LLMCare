@@ -148,6 +148,14 @@ class Network(nn.Module):
         elif self.embedding_output_structure=='Mean':
             x_transformer = torch.mean(output.last_hidden_state, dim=1)
 
+        # Pooled Output Layer (uses transformer’s built-in pooler_output)
+        elif self.embedding_output_structure == 'Pooled':
+            if self.transformers_name == 'BERT':
+                x_transformer = output.pooler_output  # Already applies Dense + Tanh
+            else:
+                cls_token = output.last_hidden_state[:, 0, :]
+                x_transformer = self.activation(self.pooled_layer(cls_token))
+
         if self.extended:
             x_transformer = F.tanh(self.transformer_projector(x_transformer))
 

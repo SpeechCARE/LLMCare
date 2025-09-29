@@ -31,7 +31,7 @@ def get_remaining_episodes():
 
     seeds_list = [0, 3, 10, 33, 55]
 
-    embedding_output_structure_list = ['Mean', 'CLS']
+    embedding_output_structure_list = ['Mean', 'CLS', 'Pooled']
 
     all_list = [transformers_list, seeds_list, embedding_output_structure_list]
     episodes = list(itertools.product(*all_list))

@@ -60,7 +60,7 @@ Convert your dataset into JSON format:
 python qwen/create_dataset_json.py
 ```
 
-### 🚀 Training
+### Training
 
 Train using the provided YAML config:
 
@@ -68,7 +68,7 @@ Train using the provided YAML config:
 llamafactory-cli train qwen/train.yaml
 ```
 
-### 🧪 Inference
+### Inference
 
 Fist install dependencies:
 
@@ -79,35 +79,29 @@ pip install -r ../qwen/test_requirements.txt   # test dependencies
 Then, run inference for audio classification:
 
 ```bash
-python qwen/test_audio_classification_2label.py
+python qwen/test_audio_classification.py
 ```
 
 ---
 
-## 🦉 Phi-4
+## Phi-4
 
-### ⚙️ Setup
+### Setup
 
 ```bash
 cd Phi4
 pip install -r requirements.txt
 ```
 
-### 🚀 Training
+### Training
 
 Run fine-tuning with the shell script:
 
 ```bash
-bash run.sh
+bash finetune.sh
 ```
 
-or directly:
-
-```bash
-python finetune.py
-```
-
-### 🧪 Inference
+### Inference
 
 Run inference with:
 

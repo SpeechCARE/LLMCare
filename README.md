@@ -49,7 +49,7 @@ The repository is organized into **five components**, each with its own README a
   * **Qwen** → Fine-tuning with [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory).
 
     * Train with: `llamafactory-cli train train.yaml`
-    * Inference with: `test_audio_classification_2label.py`
+    * Inference with: `test_audio_classification.py`
   * **Phi4** → Fine-tuning with native scripts.
 
     * Train with: `bash run.sh` or `python finetune.py`

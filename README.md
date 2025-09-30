@@ -21,7 +21,7 @@ The repository is organized into **five components**, each with its own README a
 * Compares frozen, last-layer, and full fine-tuning.
 * Incorporates **110 handcrafted linguistic features**.
 * Develops a **fusion classifier** combining embeddings + features.
-  👉 See [Component 1 README](./Component%201%20-%20Transformer%20%26%20Fusion%20Screening/README.md)
+  👉 See [Component 1 README](./Component%201%20-%20Transformer%20%26%20Fusion%20Screening/READme.md)
 
 ---
 
@@ -37,7 +37,7 @@ The repository is organized into **five components**, each with its own README a
 
 * Evaluates **fine-tuned LLMs** as direct classifiers for speech transcripts.
 * Demonstrates significant performance gains with fine-tuning.
-  👉 See [Component 3 README](./Component%203%20-%20LLMs%20as%20Text-Only%20Classifiers/README.md)
+  👉 See [Component 3 README](./Component%203%20–%20LLMs%20as%20Text-Only%20Classifiers/READMe.md)
 
 ---
 
@@ -54,7 +54,7 @@ The repository is organized into **five components**, each with its own README a
 
     * Train with: `bash run.sh` or `python finetune.py`
     * Inference with: `bash test.sh` or `python test.py`
-      👉 See [Component 4 README](./Component%204%20-%20Multimodal%20LLMs/README.md)
+      👉 See [Component 4 README](./Component%204%20–%20Multimodal%20LLMs/README.md)
 
 ---
 

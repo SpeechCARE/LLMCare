@@ -1,6 +1,6 @@
 # Component 1 – Transformer & Fusion Screening
 
-## 📌 Overview
+## Overview
 
 This component develops a **screening algorithm** for detecting cognitive decline using both **transformer-based embeddings** and **handcrafted linguistic features**, combined through a **fusion classifier**.
 
@@ -8,7 +8,7 @@ This component develops a **screening algorithm** for detecting cognitive declin
 * **Handcrafted Features**: 110 lexical, syntactic, semantic, and psycholinguistic features for interpretability.
 * **Fusion Classifier**: Combines transformer embeddings with handcrafted features via a late fusion strategy for improved accuracy and robustness.
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 ├── Config/
@@ -29,13 +29,16 @@ This component develops a **screening algorithm** for detecting cognitive declin
 │   ├── supplementary.py     # Extra utilities (e.g., metrics, feature extraction)
 │   └── utils.py             # Helper functions (logging, checkpointing, etc.)
 │
+├── notebooks/
+│   └── extract_handcrafted_features.ipynb  # Run this before main.py
+│
 ├── main.py                  # Entry point script
 ├── train.py                 # Training loop
 ├── requirements.txt         # Dependencies
 └── README.md
 ```
 
-## ⚙️ Installation
+## Installation
 
 Install dependencies:
 
@@ -43,7 +46,20 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-## 🚀 Running
+## Running
+
+### Step 1 – Extract Handcrafted Features
+
+Before training or running the pipeline, you must generate the handcrafted linguistic features.
+Open and run the notebook:
+
+```bash
+notebooks/extract_handcrafted_features.ipynb
+```
+
+This will produce a feature file (e.g., features.csv) that is later combined with transformer embeddings.
+
+### Step 2 – Train / Run Pipeline
 
 Run the main script:
 
@@ -97,12 +113,3 @@ LOG_DIR        = "./logs/"
 * Update these paths if your dataset is stored elsewhere.
 * Change `CHECKPOINT_DIR` to decide where trained models are saved.
 * Set `LOG_DIR` for TensorBoard or training logs.
-
----
-
-### ✅ Typical Workflow
-
-1. Update **data paths** in `global_constants.py` to point to your dataset.
-2. Adjust **hyperparameters** in `config.py` (e.g., try `BioBERT` with smaller batch size).
-3. Run `python main.py` and monitor results in `logs/`.
-4. Saved models will appear in `checkpoints/`.

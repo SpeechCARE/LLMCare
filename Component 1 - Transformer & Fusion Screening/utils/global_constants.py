@@ -7,8 +7,8 @@ LIWC = 'LIWC'
 
 
 
-path = '/content/drive/MyDrive/Transformers_LLMs_Linguistic_Paper/Development/'
-result_path = path + 'Result/Yasaman_DePiC/'
+path = '/workspace/Transformers_LLMs_Linguistic_Paper/Development/'
+result_path = path + 'Result/DePiC/'
 data_path = path + 'Data/'
 
 Code_Name ='tansformer_auc_EarlyStopping_DePic'
@@ -17,12 +17,12 @@ valid_predicted_probs_sheet = f'/Validation_Predicted_probability_of_{Code_Name}
 test_predicted_probs_sheet = f'/Test_Predicted_probability_of_{Code_Name}.xlsx'
 
 
-train_data_path = data_path + 'New_Data_Yasaman/'
-validation_data_path = data_path + 'New_Data_Yasaman/'
+train_data_path = data_path + 'Main_data_2021/'
+validation_data_path = data_path + 'Main_data_2021/'
 test_data_path = data_path + 'Test_data_2021/'
 
-train_text_path = 'New_Data_Yasaman/Text/train.csv'
-val_text_path = 'New_Data_Yasaman/Text/validation.csv'
+train_text_path = 'Main_data_2021/Text/train.csv'
+val_text_path = 'Main_data_2021/Text/validation.csv'
 test_text_path = "Test_data_2021/Text/Test_DePiC.xlsx"
 
 

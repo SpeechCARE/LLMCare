@@ -1,3 +1,2 @@
-transformers==4.50.3
-bidict
-kaleido
+--extra-index-url https://download.pytorch.org/whl/cu118torch==2.1.0torchvision==0.16.0torchaudio==2.1.0transformers==4.48.0
+hf_transfernumpy==1.26.4bidictimbalanced-learnopenpyxlmatplotlibseabornsoundfilesoxdeplacylexicalrichnessspacy==3.8.7en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whltyping_extensions>=4.14.1

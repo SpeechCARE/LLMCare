@@ -26,18 +26,20 @@ class Supplementary():
 
     def replace_inf_nan_with_column_mean(self, df, exclude_columns=[]):
         for column in df.columns:
-
+    
             if column in exclude_columns:
                 continue
-
+    
             inf_indices = np.isinf(df[column])
             nan_indices = np.isnan(df[column])
+    
             if inf_indices.any() or nan_indices.any():
                 column_mean = np.nanmean(df[column].values[~inf_indices])
-                # Replace the inf and nan values with the column mean
-                df[column][inf_indices] = column_mean
-                df[column][nan_indices] = column_mean
-
+    
+                # Replace inf and nan values with the column mean
+                df.loc[inf_indices, column] = column_mean
+                df.loc[nan_indices, column] = column_mean
+    
         return df
 
 

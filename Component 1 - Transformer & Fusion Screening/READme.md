@@ -38,34 +38,185 @@ This component develops a **screening algorithm** for detecting cognitive declin
 └── README.md
 ```
 
-## Installation
+## Environment Setup (Conda)
 
-Install dependencies:
+Create a dedicated Conda environment named `speechcare` with Python 3.11
+before installing the project dependencies.
+
+These instructions assume a Linux x86-64 server with Bash, Git, wget,
+and access to Jupyter Notebook or JupyterLab. The same workflow can be
+used on RunPod, Vast.ai, and other servers that provide these tools.
+
+The examples use `/workspace`. If this directory is unavailable or
+not writable, choose another directory, such as `$HOME/workspace`,
+and update the paths below accordingly.
+
+**Google Colab:** To use this same Conda environment through the Colab
+interface, connect to a Jupyter runtime launched from `speechcare`,
+following Google's
+[local-runtime instructions](https://research.google.com/colaboratory/local-runtimes.html).
+Creating and registering a Conda environment does not automatically
+change the interpreter of a standard hosted Colab notebook.
+
+### Step 1 – Install Miniconda
+
+Run the following commands in a **Bash terminal**.
+
+Set your workspace directory:
 
 ```bash
-pip install -r requirements.txt
+export SPEECHCARE_WORKSPACE="/workspace"
+
+mkdir -p "$SPEECHCARE_WORKSPACE"
+cd "$SPEECHCARE_WORKSPACE"
 ```
+
+Install Miniconda once. If Miniconda is already installed at the path
+below, skip the download and installer commands.
+
+```bash
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+bash Miniconda3-latest-Linux-x86_64.sh \
+  -b -p "$SPEECHCARE_WORKSPACE/miniconda3"
+```
+
+Activate Miniconda and initialize Bash:
+
+```bash
+source "$SPEECHCARE_WORKSPACE/miniconda3/bin/activate"
+
+conda init bash
+source ~/.bashrc
+
+conda --version
+```
+
+### Step 2 – Create the speechcare Environment
+
+Continue in the same Bash terminal.
+
+After reviewing and agreeing to the Terms of Service for the specified
+Anaconda channels, accept them:
+
+```bash
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+```
+
+Create and activate the environment:
+
+```bash
+conda create -n speechcare python=3.11 pip -y
+
+conda activate speechcare
+```
+
+Install and register the notebook kernel:
+
+```bash
+python -m pip install ipykernel
+
+python -m ipykernel install --user \
+  --name speechcare \
+  --display-name "Python (speechcare)"
+```
+
+If the `speechcare` environment already exists, activate it instead
+of running the environment-creation command again.
+
+### Step 3 – Select the Notebook Kernel
+
+In Jupyter Notebook or JupyterLab, open the kernel selector and choose
+**Python (speechcare)**. Refresh Jupyter if the new kernel is not
+initially listed.
+
+Run the following in a notebook code cell to verify the interpreter:
+
+```python
+import sys
+
+print(sys.executable)
+print(sys.version)
+```
+
+For the default installation path, the executable should be:
+
+```text
+/workspace/miniconda3/envs/speechcare/bin/python
+```
+
+The Python version should be 3.11.
+
+Select this kernel for both feature extraction and pipeline execution.
+
+## Installation
+
+### Step 1 – Download the Repository
+
+In the same Bash terminal, clone the repository into your workspace:
+
+```bash
+cd "$SPEECHCARE_WORKSPACE"
+
+git clone https://github.com/SpeechCARE/LLMCare.git
+```
+
+If the repository is already present, use the existing copy.
+
+### Step 2 – Install Project Dependencies
+
+Open a notebook using **Python (speechcare)**.
+
+In a notebook code cell, enter the Component 1 directory and install
+the dependencies:
+
+```python
+%cd "/workspace/LLMCare/Component 1 - Transformer & Fusion Screening"
+
+%pip install -r requirements.txt
+```
+
+If you chose a different workspace directory, replace `/workspace`
+in the notebook commands with that path.
+
+If installation requests a kernel restart, restart
+**Python (speechcare)** and rerun the directory-change command.
 
 ## Running
 
-### Step 1 – Extract Handcrafted Features
+Before running the notebooks or pipeline, update the dataset and
+output paths in `utils/global_constants.py` and review the settings
+in `Config/config.py`. See the Configuration section below.
 
-Before training or running the pipeline, you must generate the handcrafted linguistic features.
-Open and run the notebook:
+### Step 1 – Generate Handcrafted Features
 
-```bash
+Open:
+
+```text
 notebooks/extract_handcrafted_features.ipynb
 ```
 
-This will produce a feature file (e.g., features.csv) that is later combined with transformer embeddings.
+Select **Python (speechcare)**, update any input and output paths
+required by the notebook, and run its cells to generate the
+handcrafted features used by the fusion pipeline.
 
-### Step 2 – Train / Run Pipeline
+### Step 2 – Run the Pipeline
 
-Run the main script:
+Open a notebook using **Python (speechcare)**.
 
-```bash
-python main.py
+Run the following in a notebook code cell, adjusting the workspace
+path if necessary:
+
+```python
+%cd "/workspace/LLMCare/Component 1 - Transformer & Fusion Screening"
+
+%run main.py
 ```
+
+`%run main.py` executes the script using the notebook's selected
+Python environment.
 
 ---
 

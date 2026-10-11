@@ -202,6 +202,8 @@ Select **Python (speechcare)**, update any input and output paths
 required by the notebook, and run its cells to generate the
 handcrafted features used by the fusion pipeline.
 
+Note: If you plan to use only the Transformer-based models without fusing their representations with handcrafted linguistic features, you can skip this step and proceed directly to Step 2.
+
 ### Step 2 – Run the Pipeline
 
 Open a notebook using **Python (speechcare)**.
